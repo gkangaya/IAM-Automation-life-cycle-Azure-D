@@ -24,3 +24,9 @@ Create a `.env `file based on `.env.example`
 
 
 open http://localhost:5000
+
+# Screenshots
+
+## List of accounts/users
+
+![List of account with button for action ](app/static/img/users-list.png)
