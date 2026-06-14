@@ -1,5 +1,5 @@
 # Multi-stage build for optimal size
-FROM python:3.11-slim as builder
+FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
@@ -21,7 +21,7 @@ WORKDIR /app
 # Copy Python dependencies from builder
 COPY --from=builder /usr/local /usr/local
 # Copy application code
-COPY code .
+COPY . .
 
 # Make sure scripts in .local are usable
 ENV PATH=/root/.local/bin:$PATH

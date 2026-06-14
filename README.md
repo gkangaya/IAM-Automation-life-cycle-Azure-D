@@ -6,6 +6,16 @@
 
 `pip install -r requirements.txt`
 
+## Environment variables
+
+Register Microsoft Entra / Azure AD app
+
+Create a `.env `file based on `.env.example`
+
+## Running locally
+
+`python3 run.py`
+
 ## Docker
 
 `cd /code `

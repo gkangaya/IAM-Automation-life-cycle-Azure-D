@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    build: code
+    build: .
     container_name: azure-ad-manager
     ports:
       - "5000:5000"
