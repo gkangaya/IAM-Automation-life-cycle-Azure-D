@@ -18,7 +18,9 @@ Create a `.env `file based on `.env.example`
 
 ## Docker
 
-`cd /code `
+Installing Docker on the machine
+
+On the directory that contains the docker-compose.yml run the below:
 
 `docker compose up -d --build `
 
