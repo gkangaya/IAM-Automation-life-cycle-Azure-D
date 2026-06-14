@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  web:
+    build: code
+    container_name: azure-ad-manager
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=${SECRET_KEY}
+      - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+      - AZURE_TENANT_DOMAIN=${AZURE_TENANT_DOMAIN}
+      - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+      - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
+    env_file:
+      - .env
+    restart: unless-stopped

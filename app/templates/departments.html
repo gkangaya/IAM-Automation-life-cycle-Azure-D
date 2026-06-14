@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Departments{% endblock %}
+
+{% block content %}
+<div class="px-4 py-6 sm:px-0">
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Department Management</h2>
+            
+            {% if departments %}
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                {% for dept in departments %}
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-gray-900">{{ dept.name }}</h3>
+                            <span class="px-2 py-1 text-xs rounded-full bg-primary text-white">{{ dept.count }} members</span>
+                        </div>
+                    </div>
+                    <div class="divide-y divide-gray-200">
+                        {% for user in dept.users %}
+                        <div class="px-4 py-3 hover:bg-gray-50">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">{{ user.displayName }}</p>
+                                    <p class="text-xs text-gray-500">{{ user.userPrincipalName }}</p>
+                                    {% if user.jobTitle %}
+                                    <p class="text-xs text-gray-400 mt-1">{{ user.jobTitle }}</p>
+                                    {% endif %}
+                                </div>
+                                <a href="{{ url_for('edit_user', user_id=user.id) }}" class="text-primary hover:text-blue-700 text-sm">
+                                    Edit
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+                <h3 class="mt-2 text-sm font-medium text-gray-900">No departments found</h3>
+                <p class="mt-1 text-sm text-gray-500">Add departments to users to see them organized here.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
