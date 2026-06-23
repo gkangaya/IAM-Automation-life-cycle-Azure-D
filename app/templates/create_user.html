@@ -58,9 +58,29 @@
                         {{ form.job_title(class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm", placeholder="Software Engineer") }}
                     </div>
                     
-                    <div>
+                    <div class="sm:col-span-2">
                         <label class="block text-sm font-medium text-gray-700">Department</label>
-                        {{ form.department(class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm", placeholder="Engineering") }}
+                        <select name="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm">
+                            <option value="">Select a department...</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Head Nurse">Head Nurse</option>
+                            <option value="IT Assistant">IT Assistant</option>
+                            <option value="IT Officer">IT Officer</option>
+                            <option value="Technical Assistant">Technical Assistant</option>
+                            <option value="Technical Officer">Technical Officer</option>
+                            <option value="Lab Technician">Lab Technician</option>
+                            <option value="Lab Officer">Lab Officer</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="HR Officer">HR Officer</option>
+                            <option value="HR Assistant">HR Assistant</option>
+                            <option value="Account Assistant">Account Assistant</option>
+                            <option value="Accountant Officer">Accountant Officer</option>
+                        </select>
+                        {% if form.department.errors %}
+                            {% for error in form.department.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
                 

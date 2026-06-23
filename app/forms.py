@@ -23,14 +23,48 @@ class CreateUserForm(FlaskForm):
         Length(min=8, message='Password must be at least 8 characters')
     ])
     job_title = StringField('Job Title', validators=[Length(max=128)])
-    department = StringField('Department', validators=[Length(max=128)])
+
+    # Department dropdown choices
+    department = SelectField('Department', choices=[
+        ('', 'Select a department...'),
+        ('Nurse', 'Nurse'),
+        ('Head Nurse', 'Head Nurse'),
+        ('IT Assistant', 'IT Assistant'),
+        ('IT Officer', 'IT Officer'),
+        ('Technical Assistant', 'Technical Assistant'),
+        ('Technical Officer', 'Technical Officer'),
+        ('Lab Technician', 'Lab Technician'),
+        ('Lab Officer', 'Lab Officer'),
+        ('Doctor', 'Doctor'),
+        ('HR Officer', 'HR Officer'),
+        ('HR Assistant', 'HR Assistant'),
+        ('Account Assistant', 'Account Assistant'),
+        ('Accountant Officer', 'Accountant Officer')
+    ], validators=[Optional()])
 
 class UpdateUserForm(FlaskForm):
     display_name = StringField('Display Name', validators=[DataRequired(), Length(max=128)])
     given_name = StringField('First Name', validators=[Length(max=64)])
     surname = StringField('Last Name', validators=[Length(max=64)])
     job_title = StringField('Job Title', validators=[Length(max=128)])
-    department = StringField('Department', validators=[Length(max=128)])
+
+    # Department dropdown choices
+    department = SelectField('Department', choices=[
+        ('', 'Select a department...'),
+        ('Nurse', 'Nurse'),
+        ('Head Nurse', 'Head Nurse'),
+        ('IT Assistant', 'IT Assistant'),
+        ('IT Officer', 'IT Officer'),
+        ('Technical Assistant', 'Technical Assistant'),
+        ('Technical Officer', 'Technical Officer'),
+        ('Lab Technician', 'Lab Technician'),
+        ('Lab Officer', 'Lab Officer'),
+        ('Doctor', 'Doctor'),
+        ('HR Officer', 'HR Officer'),
+        ('HR Assistant', 'HR Assistant'),
+        ('Account Assistant', 'Account Assistant'),
+        ('Accountant Officer', 'Accountant Officer')
+    ], validators=[Optional()])
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[
@@ -57,7 +91,7 @@ class ChangePasswordForm(FlaskForm):
     ])
 
     def validate_new_password(self, field):
-        """Validate password strength"""
+        import re
         password = field.data
         if not re.search(r'[A-Z]', password):
             raise ValidationError('Password must contain at least one uppercase letter')

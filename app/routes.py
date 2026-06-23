@@ -40,10 +40,8 @@ def create_user():
 
     if form.validate_on_submit():
         try:
-            # Generate a secure temporary password if not provided
-            password = form.password.data
-            if not password:
-                password = secrets.token_urlsafe(12)
+            # Generate password if not provided
+            password = form.password.data or secrets.token_urlsafe(12)
 
             user_data = {
                 'username': form.username.data,
@@ -52,7 +50,7 @@ def create_user():
                 'surname': form.surname.data,
                 'password': password,
                 'job_title': form.job_title.data,
-                'department': form.department.data
+                'department': form.department.data  # This will be the selected value
             }
 
             result = app.azure_ad_helper.create_user(user_data)
